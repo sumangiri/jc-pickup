@@ -3,7 +3,7 @@ import { query } from "./db";
 export type GameRow = {
   id: string; date: string; label?: string; home: string; away: string;
   captains: string; swing?: string; score_home?: number; score_away?: number;
-  result?: string; motm?: string;
+  result?: string; motm?: string; sheet_url?: string;
 };
 
 export async function allGames() {

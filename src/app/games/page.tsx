@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { migrate } from "@/lib/db";
 import { allGames } from "@/lib/stats";
 import GamesBrowser from "@/components/GamesBrowser";
+import { isAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -11,11 +12,12 @@ export default async function Games() {
   if (!s) redirect("/login");
   await migrate();
   const games = await allGames();
+  const admin = isAdmin(s);
   return (
     <>
       <h1 className="page">Games</h1>
       <p className="sub">Every game on record. Search by date, player or scoreline.</p>
-      <GamesBrowser games={games.map((g) => ({
+      <GamesBrowser admin={admin} games={games.map((g) => ({
         ...g, home: JSON.parse(g.home), away: JSON.parse(g.away),
         captains: JSON.parse(g.captains || "{}"),
       }))} />

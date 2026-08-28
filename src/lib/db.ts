@@ -140,6 +140,27 @@ export async function migrate() {
   )`);
 }
 
+/** Additive schema for newer features; safe on both engines. */
+export async function migrateExtras() {
+  await exec(`CREATE TABLE IF NOT EXISTS photos (
+    id TEXT PRIMARY KEY,
+    url TEXT NOT NULL,
+    caption TEXT,
+    game_date TEXT,
+    uploaded_by TEXT,
+    created_at ${TS()}
+  )`);
+  await exec(`CREATE TABLE IF NOT EXISTS assessments (
+    id TEXT PRIMARY KEY,
+    week_label TEXT,
+    content TEXT NOT NULL,
+    games_covered INTEGER,
+    created_by TEXT,
+    created_at ${TS()}
+  )`);
+  try { await exec(`ALTER TABLE games ADD COLUMN sheet_url TEXT`); } catch {}
+}
+
 export function uid() {
   return (
     Date.now().toString(36) + Math.random().toString(36).slice(2, 10)

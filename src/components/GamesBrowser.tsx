@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
+import GameEditor from "./GameEditor";
 
-export default function GamesBrowser({ games }: { games: any[] }) {
+export default function GamesBrowser({ games, admin }: { games: any[]; admin?: boolean }) {
+  const [editing, setEditing] = useState<any>(null);
+  const [importing, setImporting] = useState(false);
   const [q, setQ] = useState("");
   const [open, setOpen] = useState<string | null>(null);
   const term = q.trim().toLowerCase();
@@ -23,8 +26,11 @@ export default function GamesBrowser({ games }: { games: any[] }) {
         <Stat k="Goals / game" v={played.length ? (goals / played.length).toFixed(1) : "—"} />
         <Stat k="Home / Away" v={`${homeW} – ${played.length - homeW}`} />
       </div>
-      <input value={q} onChange={(e) => setQ(e.target.value)}
-        placeholder="Search date, player, score…" style={{ marginBottom: 16 }} />
+      <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+        <input value={q} onChange={(e) => setQ(e.target.value)}
+          placeholder="Search date, player, score…" style={{ flex: 1 }} />
+        {admin && <button className="btn ghost" onClick={() => setImporting(true)}>Import game</button>}
+      </div>
       <div className="chalk" style={{ padding: 0, overflow: "hidden" }}>
         <table>
           <thead>
@@ -51,6 +57,8 @@ export default function GamesBrowser({ games }: { games: any[] }) {
                         <Side title="Away · No pinnies" color="#8FAAF5" names={g.away} cap={g.captains?.away} />
                       </div>
                       {g.swing && <div className="muted mono" style={{ fontSize: 11.5 }}>⇄ {g.swing} switched at half</div>}
+                      {g.sheet_url && <img src={g.sheet_url} alt="team sheet" style={{ maxWidth: 480, width: "100%", borderRadius: 8, marginTop: 10, border: "1px solid var(--line)" }} />}
+                      {admin && <div style={{ marginTop: 10 }}><button className="btn ghost sm" onClick={(e) => { e.stopPropagation(); setEditing(g); }}>Edit game</button></div>}
                     </td>
                   </tr>
                 )}
@@ -60,6 +68,9 @@ export default function GamesBrowser({ games }: { games: any[] }) {
         </table>
         {shown.length === 0 && <div className="empty"><h3>Nothing matches “{q}”</h3><p>Try a player name or a date.</p></div>}
       </div>
+      {(importing || editing) && (
+        <GameEditor game={editing || undefined} onClose={() => { setImporting(false); setEditing(null); }} />
+      )}
     </>
   );
 }
