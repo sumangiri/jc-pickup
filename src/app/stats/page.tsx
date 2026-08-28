@@ -12,7 +12,7 @@ export default async function Stats() {
   await migrate();
   const st = await standings();
   const inf = await influence();
-  const players = await query<any>("SELECT * FROM players WHERE active = 1");
+  const players = await query<any>("SELECT * FROM players WHERE active");
   const hist = await query<any>("SELECT player_id, ts, skill FROM rating_history ORDER BY ts ASC");
 
   const rows = players.map((p: any) => {
