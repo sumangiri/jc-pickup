@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const id = uid();
     await query(
       `INSERT INTO players (id,name,aliases,primary_pos,secondary,ball_control,influence,discipline,skill,active)
-       VALUES (?,?,?,?,?,?,?,?,?,1)`,
+       VALUES (?,?,?,?,?,?,?,?,?,TRUE)`,
       [id, b.name, b.aliases || "", b.primaryPos || "D", b.secondary || null,
        bc, inf, dis, composite(bc, inf, dis)]
     );
