@@ -9,7 +9,7 @@ export default async function Roster() {
   const s = await getSession();
   if (!s) redirect("/login");
   await migrate();
-  const players = await query<any>("SELECT * FROM players WHERE active = 1 ORDER BY skill DESC");
+  const players = await query<any>("SELECT * FROM players WHERE active ORDER BY skill DESC");
   const users = isSuper(s) ? await query<any>("SELECT id,username,role FROM users ORDER BY username") : [];
   return (
     <>
