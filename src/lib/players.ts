@@ -19,7 +19,7 @@ export function toBalancer(p: DbPlayer) {
 }
 
 export async function allPlayers() {
-  return query<DbPlayer>("SELECT * FROM players WHERE active = 1 ORDER BY skill DESC");
+  return query<DbPlayer>("SELECT * FROM players WHERE active ORDER BY skill DESC");
 }
 
 function norm(s: string) {
