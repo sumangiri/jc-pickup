@@ -1,0 +1,520 @@
+{
+  "_comment": "Game history.",
+  "games": [
+    {
+      "id": "2026-07-04",
+      "date": "2026-07-04",
+      "home": [
+        "Suman",
+        "Milan",
+        "Utsav",
+        "Saurav",
+        "Pradip Dhakal",
+        "Dominic Colosimo",
+        "Subash Gaudel",
+        "Saugat"
+      ],
+      "away": [
+        "Shailesh Paudel",
+        "Sachin Tripathi",
+        "Biswas Sharma",
+        "Pranaya Rana",
+        "Nirmal",
+        "Kwasi",
+        "Sushi Subedi",
+        "GP Adhikari"
+      ],
+      "captains": {
+        "home": "Suman",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": 5,
+        "away": 4
+      },
+      "result": "home"
+    },
+    {
+      "id": "2026-07-11",
+      "date": "2026-07-11",
+      "home": [
+        "Suman",
+        "Saugat",
+        "Jorge Martin del Campo",
+        "Shailesh Paudel",
+        "Pradhyumna Wagle",
+        "Biswas Sharma",
+        "Kwasi",
+        "Saurav",
+        "Jeevaka Kiriella",
+        "Sushi Subedi",
+        "Narayan"
+      ],
+      "away": [
+        "Pranaya Rana",
+        "Milan",
+        "Dominic Colosimo",
+        "Ashim Koirala",
+        "Pradip Dhakal",
+        "GP Adhikari",
+        "Sachin Tripathi",
+        "Baidoo",
+        "Rai",
+        "Fikreab Solomon",
+        "Subash Gaudel"
+      ],
+      "captains": {
+        "home": "Suman",
+        "away": "Pranaya Rana"
+      },
+      "swing": null,
+      "score": {
+        "home": 2,
+        "away": 4
+      },
+      "result": "away"
+    },
+    {
+      "id": "2026-07-16",
+      "date": "2026-07-16",
+      "home": [
+        "Kwasi",
+        "Utsav",
+        "Pranaya Rana",
+        "AB",
+        "Nakul",
+        "Ashim Koirala",
+        "Sushi Subedi"
+      ],
+      "away": [
+        "Biswas Sharma",
+        "Manoj Khanal",
+        "Fikreab Solomon",
+        "Shailesh Paudel",
+        "Saurav",
+        "Pradhyumna Wagle",
+        "Milan"
+      ],
+      "captains": {
+        "home": "Pranaya Rana",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": 4,
+        "away": 5
+      },
+      "result": "away"
+    },
+    {
+      "id": "2026-07-18",
+      "date": "2026-07-18",
+      "home": [
+        "Suman",
+        "Dhruvil Matalia",
+        "Manoj Khanal",
+        "Sachin Tripathi",
+        "Narayan",
+        "Utsav",
+        "Fikreab Solomon",
+        "Shailesh Paudel",
+        "Milan",
+        "Saurav",
+        "Jeevaka Kiriella",
+        "Roberto",
+        "GP Adhikari"
+      ],
+      "away": [
+        "Pradhyumna Wagle",
+        "Sushi Subedi",
+        "Nirmal",
+        "Biswas Sharma",
+        "Pranaya Rana",
+        "Pradip Dhakal",
+        "Kwasi",
+        "Subash Gaudel",
+        "Ashim Koirala",
+        "Saugat",
+        "Rabin",
+        "Karan Ambardekar"
+      ],
+      "captains": {
+        "home": "Suman",
+        "away": "Pranaya Rana"
+      },
+      "swing": null,
+      "score": {
+        "home": 8,
+        "away": 6
+      },
+      "result": "home"
+    },
+    {
+      "id": "2026-07-23",
+      "date": "2026-07-23",
+      "home": [
+        "Suman",
+        "Shailesh Paudel",
+        "Milan",
+        "Utsav",
+        "Saugat",
+        "Saurav",
+        "Sushi Subedi",
+        "Manoj Khanal"
+      ],
+      "away": [
+        "Pranaya Rana",
+        "Biswas Sharma",
+        "Kwasi",
+        "Pradhyumna Wagle",
+        "Pradip Dhakal",
+        "Sachin Tripathi",
+        "Karan Ambardekar"
+      ],
+      "captains": {
+        "home": "Shailesh Paudel",
+        "away": "Pranaya Rana"
+      },
+      "swing": "Saugat",
+      "score": {
+        "home": 4,
+        "away": 2
+      },
+      "result": "home"
+    },
+    {
+      "id": "2026-07-25",
+      "date": "2026-07-25",
+      "home": [
+        "Suman",
+        "Prasanna Poudyal",
+        "Sushi Subedi",
+        "Adrith",
+        "Narayan",
+        "Jeevaka Kiriella",
+        "Kwasi",
+        "Saurav",
+        "Milan",
+        "Utsav"
+      ],
+      "away": [
+        "Rai",
+        "Onur",
+        "Pranaya Rana",
+        "Jorge Martin del Campo",
+        "Shailesh Paudel",
+        "Pradhyumna Wagle",
+        "Nirmal",
+        "Fikreab Solomon",
+        "Sachin Tripathi",
+        "Manoj Khanal"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Pranaya Rana"
+      },
+      "swing": null,
+      "score": {
+        "home": 4,
+        "away": 6
+      },
+      "result": "away",
+      "motm": "Shailesh Paudel"
+    },
+    {
+      "id": "2026-07-30",
+      "date": "2026-07-30",
+      "home": [
+        "Suman",
+        "GP Adhikari",
+        "Karan Ambardekar",
+        "Saurav",
+        "Utsav",
+        "Milan",
+        "Adrith",
+        "Theo",
+        "Narayan"
+      ],
+      "away": [
+        "Manoj Khanal",
+        "Pranaya Rana",
+        "Ashim Koirala",
+        "Shailesh Paudel",
+        "Biswas Sharma",
+        "Arjun D. Shetty",
+        "Sachin Tripathi",
+        "Fikreab Solomon",
+        "Sushi Subedi"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": null,
+        "away": null
+      },
+      "result": null
+    },
+    {
+      "id": "2026-08-01",
+      "date": "2026-08-01",
+      "home": [
+        "Suman",
+        "Prasanna Poudyal",
+        "Saugat",
+        "Anit Lal Pradhan",
+        "MichealCob",
+        "Saurav",
+        "Pradeep",
+        "Theo",
+        "Narayan",
+        "Utsav",
+        "Milan",
+        "GP Adhikari"
+      ],
+      "away": [
+        "Biswas Sharma",
+        "Sachin Tripathi",
+        "Shailesh Paudel",
+        "Surya Rai",
+        "Manoj Khanal",
+        "Rai",
+        "Arjun D. Shetty",
+        "Pradip Dhakal",
+        "Pranaya Rana",
+        "Pradhyumna Wagle",
+        "Nirmal"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Shailesh Paudel"
+      },
+      "swing": "GP Adhikari",
+      "score": {
+        "home": 4,
+        "away": 3
+      },
+      "result": "home",
+      "motm": "Theo"
+    },
+    {
+      "id": "2026-08-08",
+      "date": "2026-08-08",
+      "home": [
+        "Prasanna Poudyal",
+        "Suman",
+        "Saurav",
+        "Anit Lal Pradhan",
+        "JFC",
+        "Sushi Subedi",
+        "Milan",
+        "Saugat",
+        "Jeevaka Kiriella",
+        "Utsav",
+        "Selim Shaalan"
+      ],
+      "away": [
+        "Nirmal",
+        "Sachin Tripathi",
+        "Manoj Khanal",
+        "Kwasi",
+        "Pradip Dhakal",
+        "GP Adhikari",
+        "Biswas Sharma",
+        "Pranaya Rana",
+        "Narayan",
+        "Ashim Koirala",
+        "Shailesh Paudel"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": 4,
+        "away": 6
+      },
+      "result": "away",
+      "motm": "Shailesh Paudel"
+    },
+    {
+      "id": "2026-08-13",
+      "date": "2026-08-13",
+      "home": [
+        "Suman",
+        "Kwasi",
+        "Selim Shaalan",
+        "Utsav",
+        "GP Adhikari",
+        "Milan",
+        "Narayan",
+        "Saurav"
+      ],
+      "away": [
+        "Pranaya Rana",
+        "Biswas Sharma",
+        "Manoj Khanal",
+        "Pradhyumna Wagle",
+        "Aman",
+        "Shailesh Paudel",
+        "Fikreab Solomon",
+        "Saugat"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": null,
+        "away": null
+      },
+      "result": null
+    },
+    {
+      "id": "2026-08-15",
+      "date": "2026-08-15",
+      "home": [
+        "Suman",
+        "Prasanna Poudyal",
+        "Milan",
+        "Pradeep",
+        "Utsav",
+        "Narayan",
+        "GP Adhikari",
+        "Selim Shaalan",
+        "JFC",
+        "Sachin Tripathi",
+        "Saurav",
+        "Jeevaka Kiriella"
+      ],
+      "away": [
+        "Shailesh Paudel",
+        "Biswas Sharma",
+        "Anit Lal Pradhan",
+        "Rai",
+        "Ashim Koirala",
+        "Pranaya Rana",
+        "Manoj Khanal",
+        "Fikreab Solomon",
+        "Nirmal",
+        "Pradip Dhakal",
+        "Saugat",
+        "Pradhyumna Wagle"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Shailesh Paudel"
+      },
+      "swing": null,
+      "score": {
+        "home": 8,
+        "away": 5
+      },
+      "result": "home",
+      "motm": "Sachin Tripathi"
+    },
+    {
+      "id": "2026-08-20",
+      "date": "2026-08-20",
+      "home": [
+        "Kwasi",
+        "Utsav",
+        "Saurav",
+        "GP Adhikari",
+        "Sushi Subedi"
+      ],
+      "away": [
+        "Pranaya Rana",
+        "Narayan",
+        "Pradhyumna Wagle",
+        "Biswas Sharma"
+      ],
+      "captains": {
+        "home": "Utsav",
+        "away": "Pranaya Rana"
+      },
+      "swing": "GP Adhikari",
+      "score": {
+        "home": null,
+        "away": null
+      },
+      "result": null
+    },
+    {
+      "id": "2026-08-22",
+      "date": "2026-08-22",
+      "home": [
+        "Suman",
+        "Prasanna Poudyal",
+        "Saurav",
+        "Jeevaka Kiriella",
+        "Roberto",
+        "Brejnev Muhire",
+        "Selim Shaalan",
+        "Utsav",
+        "Narayan",
+        "Saugat",
+        "Amin Okasha"
+      ],
+      "away": [
+        "Biswas Sharma",
+        "GP Adhikari",
+        "Pradip Dhakal",
+        "Pranaya Rana",
+        "Ashim Koirala",
+        "Youssef Okasha",
+        "Kwasi",
+        "Manoj Khanal",
+        "Sachin Tripathi",
+        "MichealCob",
+        "Fikreab Solomon"
+      ],
+      "captains": {
+        "home": "Prasanna Poudyal",
+        "away": "Pranaya Rana"
+      },
+      "swing": null,
+      "score": {
+        "home": 6,
+        "away": 5
+      },
+      "result": "home",
+      "motm": "Utsav"
+    },
+    {
+      "id": "2026-08-26",
+      "date": "2026-08-26",
+      "home": [
+        "Pradip Dhakal",
+        "Milan",
+        "Saurav",
+        "Sushi Subedi",
+        "GP Adhikari",
+        "Utsav"
+      ],
+      "away": [
+        "Kwasi",
+        "Manoj Khanal",
+        "Ashim Koirala",
+        "Narayan",
+        "Nirmal",
+        "Pradhyumna Wagle"
+      ],
+      "captains": {
+        "home": "Milan",
+        "away": "Ashim Koirala"
+      },
+      "swing": null,
+      "score": {
+        "home": null,
+        "away": null
+      },
+      "result": null
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+/* ============================================================
+   JC PICKUP — "FLOODLIT" design system
+   Palette drawn from a municipal field at 8am: dusk indigo, chalk
+   line-marking white, sodium-vapour amber, and the two pinnie colours.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+:root{
+  --ink:#0C1220;          /* dusk indigo, not black */
+  --ink-2:#131B2E;
+  --ink-3:#1B2540;
+  --chalk:#EEF3F8;        /* line-marking white */
+  --chalk-dim:#8FA0B8;
+  --chalk-faint:#55647E;
+  --amber:#FFB43C;        /* sodium floodlight */
+  --amber-dim:#8a6320;
+  --pinnie:#E23B48;       /* home */
+  --navy:#3D63C9;         /* away */
+  --grass:#2F7D4F;
+  --line:rgba(238,243,248,.10);
+  --line-strong:rgba(238,243,248,.20);
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{padding:0;margin:0;background:var(--ink);color:var(--chalk);
+  font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background-image:
+  radial-gradient(900px 500px at 15% -10%, rgba(255,180,60,.07), transparent 60%),
+  radial-gradient(700px 400px at 90% 0%, rgba(61,99,201,.10), transparent 60%);
+  background-attachment:fixed}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+
+/* ---- chalk frame: the signature. Section cards are drawn like
+   penalty-box markings — hairline rules with corner ticks. ---- */
+.chalk{position:relative;border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.008));
+  padding:22px}
+.chalk::before,.chalk::after{content:"";position:absolute;width:16px;height:16px;
+  border-color:var(--line-strong);border-style:solid;pointer-events:none}
+.chalk::before{top:-1px;left:-1px;border-width:1px 0 0 1px;border-top-left-radius:var(--r)}
+.chalk::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0;border-bottom-right-radius:var(--r)}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(12,18,32,.82);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:26px}
+.brand{font-family:'Archivo Narrow';font-weight:700;font-size:17px;letter-spacing:.14em;
+  text-transform:uppercase;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 12px var(--amber);font-style:normal}
+.nav a.link{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-dim);
+  font-weight:600;padding:6px 0;border-bottom:2px solid transparent;transition:.15s}
+.nav a.link:hover{color:var(--chalk)}
+.nav a.link.on{color:var(--amber);border-bottom-color:var(--amber)}
+.nav .sp{flex:1}
+
+h1.page{font-family:'Archivo';font-weight:900;font-size:clamp(30px,5vw,46px);
+  letter-spacing:-.02em;margin:26px 0 4px;line-height:1}
+.sub{color:var(--chalk-dim);font-size:14px;margin:0 0 24px}
+.eyebrow{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px}
+
+/* ---- controls ---- */
+.btn{background:var(--amber);color:#201604;border:none;border-radius:9px;
+  padding:11px 18px;font-weight:800;font-size:13.5px;letter-spacing:.03em;cursor:pointer;transition:.15s}
+.btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.ghost{background:transparent;color:var(--chalk);border:1px solid var(--line-strong)}
+.btn.ghost:hover{background:rgba(255,255,255,.06)}
+.btn.sm{padding:7px 13px;font-size:12px}
+.btn.red{background:var(--pinnie);color:#fff}
+.btn.green{background:var(--grass);color:#fff}
+input,select,textarea{background:var(--ink-2);border:1px solid var(--line-strong);color:var(--chalk);
+  border-radius:9px;padding:11px 13px;font-size:14px;width:100%}
+input::placeholder,textarea::placeholder{color:var(--chalk-faint)}
+label{display:block;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--chalk-dim);margin-bottom:7px;font-weight:600}
+
+/* ---- table ---- */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--chalk-dim);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line-strong)}
+td{padding:12px;border-bottom:1px solid var(--line);font-size:14px}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.028)}
+.num{font-family:'JetBrains Mono';font-variant-numeric:tabular-nums;text-align:right}
+
+/* ---- bits ---- */
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono';font-size:11px;
+  padding:3px 9px;border-radius:100px;border:1px solid var(--line-strong);color:var(--chalk-dim)}
+.pill.home{color:var(--pinnie);border-color:rgba(226,59,72,.42);background:rgba(226,59,72,.10)}
+.pill.away{color:#8FAAF5;border-color:rgba(61,99,201,.42);background:rgba(61,99,201,.12)}
+.pill.amber{color:var(--amber);border-color:rgba(255,180,60,.4);background:rgba(255,180,60,.10)}
+.grid{display:grid;gap:16px}
+.avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--ink-3);
+  border:1px solid var(--line-strong);display:grid;place-items:center;font-size:12px;
+  font-weight:800;color:var(--chalk-dim);flex-shrink:0}
+.err{background:rgba(226,59,72,.12);border:1px solid rgba(226,59,72,.4);color:#FFB4BA;
+  padding:11px 14px;border-radius:9px;font-size:13.5px;margin:12px 0}
+.ok{background:rgba(47,125,79,.15);border:1px solid rgba(47,125,79,.45);color:#9EE8BC;
+  padding:11px 14px;border-radius:9px;font-size:13.5px;margin:12px 0}
+.muted{color:var(--chalk-dim)}
+.empty{text-align:center;padding:56px 20px;color:var(--chalk-dim)}
+.empty h3{color:var(--chalk);margin:0 0 6px;font-size:17px}
+
+/* dimension meter */
+.meter{height:5px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:3px}
+
+@media (max-width:720px){
+  .nav-in{gap:14px;overflow-x:auto}
+  .chalk{padding:16px}
+  h1.page{font-size:28px}
+}

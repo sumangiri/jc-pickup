@@ -1,0 +1,91 @@
+"use client";
+import { useState } from "react";
+
+export default function GamesBrowser({ games }: { games: any[] }) {
+  const [q, setQ] = useState("");
+  const [open, setOpen] = useState<string | null>(null);
+  const term = q.trim().toLowerCase();
+  const shown = !term ? games : games.filter((g) =>
+    g.date.includes(term) || (g.label || "").toLowerCase().includes(term) ||
+    `${g.score_home}-${g.score_away}` === term ||
+    [...g.home, ...g.away].some((n: string) => n.toLowerCase().includes(term)) ||
+    (g.motm || "").toLowerCase().includes(term));
+
+  const played = games.filter((g) => g.result);
+  const goals = played.reduce((a, g) => a + (g.score_home || 0) + (g.score_away || 0), 0);
+  const homeW = played.filter((g) => g.result === "home").length;
+
+  return (
+    <>
+      <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", marginBottom: 18 }}>
+        <Stat k="Games played" v={played.length} />
+        <Stat k="Goals" v={goals} />
+        <Stat k="Goals / game" v={played.length ? (goals / played.length).toFixed(1) : "—"} />
+        <Stat k="Home / Away" v={`${homeW} – ${played.length - homeW}`} />
+      </div>
+      <input value={q} onChange={(e) => setQ(e.target.value)}
+        placeholder="Search date, player, score…" style={{ marginBottom: 16 }} />
+      <div className="chalk" style={{ padding: 0, overflow: "hidden" }}>
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Label</th><th className="num">Score</th><th>Result</th><th>MOTM</th><th></th></tr>
+          </thead>
+          <tbody>
+            {shown.map((g) => (
+              <>
+                <tr key={g.id} style={{ cursor: "pointer" }} onClick={() => setOpen(open === g.id ? null : g.id)}>
+                  <td className="mono">{g.date}</td>
+                  <td className="muted">{g.label || "—"}</td>
+                  <td className="num" style={{ fontWeight: 700 }}>
+                    {g.result ? `${g.score_home}–${g.score_away}` : <span className="muted">pending</span>}
+                  </td>
+                  <td>{g.result ? <span className={`pill ${g.result}`}>{g.result}</span> : "—"}</td>
+                  <td>{g.motm ? <span className="pill amber">★ {g.motm.split(" ")[0]}</span> : <span className="muted">—</span>}</td>
+                  <td className="muted mono" style={{ fontSize: 11 }}>{open === g.id ? "−" : "+"}</td>
+                </tr>
+                {open === g.id && (
+                  <tr key={g.id + "d"}>
+                    <td colSpan={6} style={{ background: "rgba(255,255,255,.02)" }}>
+                      <div style={{ display: "flex", gap: 26, flexWrap: "wrap", padding: "6px 0" }}>
+                        <Side title="Home · Pinnies" color="var(--pinnie)" names={g.home} cap={g.captains?.home} />
+                        <Side title="Away · No pinnies" color="#8FAAF5" names={g.away} cap={g.captains?.away} />
+                      </div>
+                      {g.swing && <div className="muted mono" style={{ fontSize: 11.5 }}>⇄ {g.swing} switched at half</div>}
+                    </td>
+                  </tr>
+                )}
+              </>
+            ))}
+          </tbody>
+        </table>
+        {shown.length === 0 && <div className="empty"><h3>Nothing matches “{q}”</h3><p>Try a player name or a date.</p></div>}
+      </div>
+    </>
+  );
+}
+
+function Side({ title, color, names, cap }: any) {
+  return (
+    <div style={{ minWidth: 190 }}>
+      <div className="mono" style={{ fontSize: 11, letterSpacing: ".12em", color, marginBottom: 6 }}>
+        {title.toUpperCase()}
+      </div>
+      {names.map((n: string) => (
+        <div key={n} style={{ fontSize: 13, padding: "2px 0" }}>
+          {n}{n === cap && <span className="pill amber" style={{ marginLeft: 6, fontSize: 9 }}>C</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Stat({ k, v }: any) {
+  return (
+    <div className="chalk" style={{ padding: 16 }}>
+      <div className="mono" style={{ fontSize: 10.5, letterSpacing: ".14em", color: "var(--chalk-dim)" }}>
+        {k.toUpperCase()}
+      </div>
+      <div style={{ fontSize: 26, fontWeight: 900, marginTop: 4 }}>{v}</div>
+    </div>
+  );
+}

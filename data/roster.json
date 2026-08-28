@@ -1,0 +1,490 @@
+{
+  "_comment": "Master roster. Ratings include auto-drift; 1-10 scale.",
+  "players": [
+    {
+      "name": "Rai",
+      "skill": 4.97,
+      "primary": "D",
+      "secondary": "M",
+      "aliases": [
+        "~Rai",
+        "917-717-3757"
+      ]
+    },
+    {
+      "name": "Jeevaka Kiriella",
+      "skill": 4.01,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "Jeeves",
+        "Jeev",
+        "Jeevaka"
+      ]
+    },
+    {
+      "name": "Shailesh Paudel",
+      "skill": 9.23,
+      "primary": "A",
+      "secondary": "M",
+      "aliases": [
+        "~Shailesh Paudel",
+        "Shailesh",
+        "984-255-8530"
+      ]
+    },
+    {
+      "name": "Sachin Tripathi",
+      "skill": 6.51,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Sachin Tripathi",
+        "Sachin",
+        "662-312-9450"
+      ]
+    },
+    {
+      "name": "Narayan",
+      "skill": 5.4,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Narayan",
+        "201-616-1147"
+      ],
+      "note": "keeper if needed"
+    },
+    {
+      "name": "Ashim Koirala",
+      "skill": 6.8,
+      "primary": "M",
+      "secondary": "D",
+      "aliases": [
+        "ashim koirala",
+        "Ashim"
+      ]
+    },
+    {
+      "name": "Akshay Chhabra",
+      "skill": 7,
+      "primary": "A",
+      "secondary": "M",
+      "aliases": [
+        "Akshay"
+      ]
+    },
+    {
+      "name": "Saurav",
+      "skill": 4.49,
+      "primary": "D",
+      "secondary": null,
+      "aliases": []
+    },
+    {
+      "name": "Manoj Khanal",
+      "skill": 2.03,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Manoj Khanal",
+        "Manoj",
+        "646-463-1058"
+      ]
+    },
+    {
+      "name": "Prasanna Poudyal",
+      "skill": 9.23,
+      "primary": "M",
+      "secondary": "A",
+      "aliases": [
+        "Prasanna"
+      ]
+    },
+    {
+      "name": "Biswas Sharma",
+      "skill": 7.32,
+      "primary": "D",
+      "secondary": "A",
+      "aliases": [
+        "Biswas"
+      ]
+    },
+    {
+      "name": "Sushi Subedi",
+      "skill": 1.87,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Sushi Subedi",
+        "Sushi",
+        "Sushil Subedi",
+        "~Sushil Subedi",
+        "848-256-9180"
+      ]
+    },
+    {
+      "name": "GP Adhikari",
+      "skill": 6.02,
+      "primary": "M",
+      "secondary": null,
+      "aliases": [
+        "~GP Adhikari",
+        "GP",
+        "201-284-8690"
+      ]
+    },
+    {
+      "name": "Pranaya Rana",
+      "skill": 8.51,
+      "primary": "A",
+      "secondary": null,
+      "aliases": [
+        "Pranaya"
+      ]
+    },
+    {
+      "name": "Karan Ambardekar",
+      "skill": 4.74,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "karan ambardekar",
+        "Karan",
+        "Coran"
+      ]
+    },
+    {
+      "name": "Kwasi",
+      "skill": 6.55,
+      "primary": "D",
+      "secondary": "A",
+      "aliases": [
+        "~Kwasi",
+        "347-561-2927"
+      ]
+    },
+    {
+      "name": "Utsav",
+      "skill": 8.49,
+      "primary": "A",
+      "secondary": "M",
+      "aliases": []
+    },
+    {
+      "name": "Dominic Colosimo",
+      "skill": 6,
+      "primary": "D",
+      "secondary": "A",
+      "aliases": [
+        "~Dominic Colosimo",
+        "Dominic",
+        "904-228-5033"
+      ]
+    },
+    {
+      "name": "Saugat",
+      "skill": 7.28,
+      "primary": "M",
+      "secondary": "A",
+      "aliases": [
+        "~Saugat",
+        "318-680-8015"
+      ]
+    },
+    {
+      "name": "Nirmal",
+      "skill": 5.97,
+      "primary": "M",
+      "secondary": "A",
+      "aliases": [
+        "~Nirmal",
+        "848-391-4727"
+      ]
+    },
+    {
+      "name": "Fikreab Solomon",
+      "skill": 2.79,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "Fikreab",
+        "Fab"
+      ]
+    },
+    {
+      "name": "Surya Rai",
+      "skill": 8,
+      "primary": "M",
+      "secondary": "A",
+      "aliases": [
+        "~Surya Rai",
+        "Surya",
+        "929-428-7099"
+      ]
+    },
+    {
+      "name": "Pradhyumna Wagle",
+      "skill": 6.71,
+      "primary": "A",
+      "secondary": "M",
+      "aliases": [
+        "Pradhyumna",
+        "Prothu",
+        "Pradhu"
+      ]
+    },
+    {
+      "name": "Selim Shaalan",
+      "skill": 6.2,
+      "primary": "A",
+      "secondary": null,
+      "aliases": [
+        "~Selim Shaalan",
+        "Selim",
+        "619-918-9650"
+      ]
+    },
+    {
+      "name": "Subash Gaudel",
+      "skill": 2,
+      "primary": "D",
+      "secondary": "M",
+      "aliases": [
+        "~Subash Gaudel",
+        "Subash",
+        "Saba",
+        "201-241-9226"
+      ]
+    },
+    {
+      "name": "Milan",
+      "skill": 9.29,
+      "primary": "A",
+      "secondary": "M",
+      "aliases": [
+        "Mullan"
+      ]
+    },
+    {
+      "name": "Baidoo",
+      "skill": 6,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Dr. Baidoo",
+        "Dr. Baidoo",
+        "Ben",
+        "240-306-4690"
+      ]
+    },
+    {
+      "name": "Theo",
+      "skill": 7.22,
+      "primary": "D",
+      "secondary": "M",
+      "aliases": [
+        "~N",
+        "919-808-7387"
+      ]
+    },
+    {
+      "name": "Pradip Dhakal",
+      "skill": 3.6,
+      "primary": "M",
+      "secondary": "D",
+      "aliases": [
+        "~Pradip Dhakal",
+        "Pradip",
+        "551-225-2495"
+      ]
+    },
+    {
+      "name": "Jorge Martin del Campo",
+      "skill": 5.19,
+      "primary": "M",
+      "secondary": null,
+      "aliases": [
+        "Jorge",
+        "Jorge Martin"
+      ]
+    },
+    {
+      "name": "Nakul",
+      "skill": 4,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Nakul",
+        "Nakul Tanwar",
+        "~Nakul Tanwar",
+        "732-647-5145"
+      ]
+    },
+    {
+      "name": "AB",
+      "skill": 4,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~AB",
+        "713-384-5162"
+      ]
+    },
+    {
+      "name": "Dhruvil Matalia",
+      "skill": 5,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Dhruvil Matalia",
+        "Dhruvil",
+        "857-498-1233"
+      ]
+    },
+    {
+      "name": "Roberto",
+      "skill": 4.2,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Roberto"
+      ]
+    },
+    {
+      "name": "Onur",
+      "skill": 6,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Onur",
+        "929-538-8786"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Adrith",
+      "skill": 4,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Adrith",
+        "551-328-8984"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Arjun D. Shetty",
+      "skill": 3.78,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Arjun D. Shetty",
+        "Arjun",
+        "732-801-6386"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Aman",
+      "skill": 7,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Aman",
+        "91-70216-97148"
+      ]
+    },
+    {
+      "name": "JFC",
+      "skill": 6.2,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~JFC"
+      ]
+    },
+    {
+      "name": "Pradeep",
+      "skill": 4.42,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Pradeep",
+        "618-353-7244"
+      ]
+    },
+    {
+      "name": "Anit Lal Pradhan",
+      "skill": 5.8,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Anit Lal Pradhan",
+        "977-984-3687426"
+      ]
+    },
+    {
+      "name": "MichealCob",
+      "skill": 6.8,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~MichealCob",
+        "909-694-6657"
+      ]
+    },
+    {
+      "name": "Talha",
+      "skill": 4,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "~Talha",
+        "518-210-3986"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Brejnev Muhire",
+      "skill": 4.2,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "Brejnev"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Youssef Okasha",
+      "skill": 3.8,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "Youssef"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Amin Okasha",
+      "skill": 4.2,
+      "primary": "D",
+      "secondary": null,
+      "aliases": [
+        "Amin"
+      ],
+      "note": "position provisional - confirm with Suman"
+    },
+    {
+      "name": "Suman",
+      "skill": 7.49,
+      "primary": "M",
+      "secondary": "A",
+      "aliases": [
+        "You",
+        "Me",
+        "Suman Giri"
+      ]
+    }
+  ]
+}
