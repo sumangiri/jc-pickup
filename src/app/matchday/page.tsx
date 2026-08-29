@@ -15,6 +15,7 @@ export default function Matchday() {
   const [chat, setChat] = useState("");
   const [log, setLog] = useState<{ who: string; text: string }[]>([]);
   const [label, setLabel] = useState("");
+  const [logged, setLogged] = useState<null | { status: string }>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   async function onFiles(files: FileList | null) {
@@ -52,24 +53,39 @@ export default function Matchday() {
     setBusy("");
     if (!r.ok) { setErr(j.error); setMissing(j.missing || []); return; }
     setMissing(j.missing || []);
+    setLogged(null);
     if (mode === "three") { setThree(j.teams); setResult(null); }
     else { setResult(j); setThree(null); }
   }
 
-  async function saveGame() {
+  async function logGame(replace = false) {
     if (!result) return;
-    setBusy("Saving…");
+    setBusy("Logging…"); setErr(""); setMsg("");
+    // send EXACTLY what is on screen — the server must not re-balance
+    const payload = {
+      save: true, replace, label: label || null,
+      exact: {
+        home: result.home.map((p: any) => p.name),
+        away: result.away.map((p: any) => p.name),
+        swing: result.swing || null,
+      },
+    };
     const r = await fetch("/api/teams", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        names: [...result.home, ...result.away].map((p: any) => p.name),
-        save: true, label: label || null, seed: 12345,
-      }),
+      body: JSON.stringify(payload),
     });
     const j = await r.json();
     setBusy("");
+    if (r.status === 409 && j.duplicate) {
+      if (confirm("A game for this date is already pending. Replace it with these teams?"))
+        return logGame(true);
+      return;
+    }
     if (!r.ok) return setErr(j.error);
-    setMsg("Saved. Enter the score on the Results page when you're done playing.");
+    setLogged({ status: j.approvalStatus });
+    setMsg(j.approvalStatus === "pending"
+      ? "Logged — waiting for Suman to approve it."
+      : "Logged. Enter the score on the Results page when you're done playing.");
   }
 
   async function sendChat(e: any) {
@@ -225,8 +241,16 @@ export default function Matchday() {
                   placeholder="Sat Aug 29 · 8:00 AM" />
               </div>
               <button className="btn" style={{ width: "100%", marginTop: 12 }}
-                onClick={saveGame} disabled={!!busy}>Save this game</button>
+                onClick={() => logGame()} disabled={!!busy || !!logged}>
+                {logged ? (logged.status === "pending" ? "Logged ✓ · awaiting approval" : "Logged ✓") : "Log this game"}
+              </button>
               {msg && <div className="ok">{msg}</div>}
+              {logged && (
+                <a href="/results" className="btn ghost sm"
+                  style={{ display: "block", textAlign: "center", marginTop: 8 }}>
+                  Go to Results
+                </a>
+              )}
             </div>
           </div>
         </>

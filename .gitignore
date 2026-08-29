@@ -2,9 +2,9 @@ node_modules
 .next
 .env.local
 .env*.local
-.env.production.local
 dev.db
 dev.db-*
 .vercel
 *.log
 .DS_Store
+tsconfig.tsbuildinfo

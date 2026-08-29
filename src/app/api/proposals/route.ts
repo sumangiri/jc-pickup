@@ -11,13 +11,18 @@ export async function POST(req: Request) {
   if (!p) return NextResponse.json({ error: "Proposal not found." }, { status: 404 });
 
   if (decision === "approved") {
-    const map: any = { ballControl: "ball_control", influence: "influence", discipline: "discipline" };
-    const col = map[p.field];
+    const DIM: any = { ballControl: "ball_control", influence: "influence", discipline: "discipline" };
+    const POS: any = { primaryPos: "primary_pos", secondary: "secondary" };
     const pl = await one<any>("SELECT * FROM players WHERE id=?", [p.player_id]);
-    const next = { ...pl, [col]: +p.new_value };
-    const skill = composite(next.ball_control, next.influence, next.discipline);
-    await query(`UPDATE players SET ${col}=?, skill=? WHERE id=?`, [+p.new_value, skill, pl.id]);
-    await addRatingHistory(pl.id, { ...next, skill } as any, "approval");
+    if (DIM[p.field]) {
+      const col = DIM[p.field];
+      const next = { ...pl, [col]: +p.new_value };
+      const skill = composite(next.ball_control, next.influence, next.discipline);
+      await query(`UPDATE players SET ${col}=?, skill=? WHERE id=?`, [+p.new_value, skill, pl.id]);
+      await addRatingHistory(pl.id, { ...next, skill } as any, "approval");
+    } else if (POS[p.field]) {
+      await query(`UPDATE players SET ${POS[p.field]}=? WHERE id=?`, [p.new_value, pl.id]);
+    }
   }
   await query("UPDATE proposals SET status=?, decided_by=?, decided_at=? WHERE id=?",
     [decision, s!.id, new Date().toISOString(), id]);

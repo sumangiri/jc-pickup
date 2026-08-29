@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSession, isAdmin } from "@/lib/auth";
+import { getSession, isAdmin, isSuper } from "@/lib/auth";
 import { migrate, migrateExtras, query, one, uid } from "@/lib/db";
 import { matchNames } from "@/lib/players";
 
@@ -11,6 +11,21 @@ export async function POST(req: Request) {
   if (!isAdmin(s)) return NextResponse.json({ error: "Admins only." }, { status: 403 });
   await migrate(); await migrateExtras();
   const b = await req.json();
+
+  // ---- superadmin lifecycle actions ----
+  if (b.action === "approve" || b.action === "deny" || b.action === "delete") {
+    if (!isSuper(s)) return NextResponse.json({ error: "Super admin only." }, { status: 403 });
+    const g = await one<any>("SELECT * FROM games WHERE id = ?", [b.gameId]);
+    if (!g) return NextResponse.json({ error: "Game not found." }, { status: 404 });
+    if (b.action === "approve") {
+      await query("UPDATE games SET approval_status='approved' WHERE id=?", [g.id]);
+      return NextResponse.json({ ok: true });
+    }
+    if (b.action === "delete" && g.result)
+      return NextResponse.json({ error: "Unpublish the result before deleting this game." }, { status: 400 });
+    await query("DELETE FROM games WHERE id=?", [g.id]);
+    return NextResponse.json({ ok: true, deleted: true });
+  }
 
   const parse = async (csv: string) => {
     const names = String(csv || "").split(",").map((x) => x.trim()).filter(Boolean);

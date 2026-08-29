@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/lib/auth";
+import { getSession, isSuper } from "@/lib/auth";
 import { migrate, migrateExtras, query, uid } from "@/lib/db";
 
 export async function GET(req: Request) {
@@ -31,4 +31,31 @@ export async function POST(req: Request) {
     "INSERT INTO photos (id,url,caption,game_date,uploaded_by) VALUES (?,?,?,?,?)",
     [id, b.url, b.caption || null, b.gameDate || null, s.username]);
   return NextResponse.json({ ok: true, id });
+}
+
+export async function DELETE(req: Request) {
+  const s = await getSession();
+  if (!s) return NextResponse.json({ error: "Sign in first." }, { status: 401 });
+  await migrate(); await migrateExtras();
+  const { id } = await req.json();
+  const p = await query<any>("SELECT uploaded_by FROM photos WHERE id = ?", [id]);
+  if (!p.length) return NextResponse.json({ error: "Photo not found." }, { status: 404 });
+  if (p[0].uploaded_by !== s.username && !isSuper(s))
+    return NextResponse.json({ error: "You can only remove photos you uploaded." }, { status: 403 });
+  await query("DELETE FROM photos WHERE id = ?", [id]);
+  return NextResponse.json({ ok: true });
+}
+
+export async function PATCH(req: Request) {
+  const s = await getSession();
+  if (!s) return NextResponse.json({ error: "Sign in first." }, { status: 401 });
+  await migrate(); await migrateExtras();
+  const b = await req.json();
+  const p = await query<any>("SELECT uploaded_by FROM photos WHERE id = ?", [b.id]);
+  if (!p.length) return NextResponse.json({ error: "Photo not found." }, { status: 404 });
+  if (p[0].uploaded_by !== s.username && !isSuper(s))
+    return NextResponse.json({ error: "You can only edit photos you uploaded." }, { status: 403 });
+  await query("UPDATE photos SET caption = ?, game_date = ? WHERE id = ?",
+    [b.caption || null, b.gameDate || null, b.id]);
+  return NextResponse.json({ ok: true });
 }

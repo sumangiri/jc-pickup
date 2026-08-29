@@ -95,6 +95,8 @@ tbody tr:hover{background:rgba(255,255,255,.028)}
   padding:3px 9px;border-radius:100px;border:1px solid var(--line-strong);color:var(--chalk-dim)}
 .pill.home{color:var(--pinnie);border-color:rgba(226,59,72,.42);background:rgba(226,59,72,.10)}
 .pill.away{color:#8FAAF5;border-color:rgba(61,99,201,.42);background:rgba(61,99,201,.12)}
+.pill.pending{color:#FFB43C;border-color:rgba(255,180,60,.45);background:rgba(255,180,60,.12)}
+.pill.draw{color:#C9D2DE;border-color:var(--line-strong);background:rgba(255,255,255,.06)}
 .pill.amber{color:var(--amber);border-color:rgba(255,180,60,.4);background:rgba(255,180,60,.10)}
 .grid{display:grid;gap:16px}
 .avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--ink-3);

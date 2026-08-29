@@ -12,7 +12,7 @@ const LINKS = [
   { href: "/roster", label: "Roster" },
 ];
 
-export default function Nav({ session }: { session: any }) {
+export default function Nav({ session, pendingCount = 0 }: { session: any; pendingCount?: number }) {
   const path = usePathname() || "";
   if (path === "/login") return null;
   const isSuper = session?.role === "superadmin";
@@ -27,6 +27,12 @@ export default function Nav({ session }: { session: any }) {
         {isSuper && (
           <Link href="/approvals" className={`link ${path.startsWith("/approvals") ? "on" : ""}`}>
             Approvals
+            {pendingCount > 0 && (
+              <span style={{ marginLeft: 6, background: "var(--amber)", color: "#201604",
+                borderRadius: 100, padding: "1px 6px", fontSize: 10.5, fontWeight: 800 }}>
+                {pendingCount}
+              </span>
+            )}
           </Link>
         )}
         <span className="sp" />

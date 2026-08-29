@@ -23,6 +23,7 @@ export default function GameEditor({ game, onClose }: { game?: any; onClose: () 
   const [sh, setSh] = useState(game?.score_home ?? "");
   const [sa, setSa] = useState(game?.score_away ?? "");
   const [motm, setMotm] = useState(game?.motm || "");
+  const [swing, setSwing] = useState(game?.swing || "");
   const [sheetUrl, setSheetUrl] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
@@ -34,7 +35,7 @@ export default function GameEditor({ game, onClose }: { game?: any; onClose: () 
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         gameId: game?.id, date, label, home, away,
-        scoreHome: sh, scoreAway: sa, motm: motm || null, sheetUrl,
+        scoreHome: sh, scoreAway: sa, motm: motm || null, swing: swing || null, sheetUrl,
       }),
     });
     const j = await r.json();
@@ -66,6 +67,10 @@ export default function GameEditor({ game, onClose }: { game?: any; onClose: () 
         <div style={{ marginBottom: 12 }}>
           <label style={{ color: "#8FAAF5" }}>Away · No Pinnies</label>
           <textarea rows={2} value={away} onChange={(e) => setAway(e.target.value)} />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <label>Swing player (switches at half — optional)</label>
+          <input value={swing} onChange={(e) => setSwing(e.target.value)} placeholder="exact name" />
         </div>
         <div className="grid" style={{ gridTemplateColumns: "1fr 1fr 1.4fr", gap: 12, marginBottom: 12 }}>
           <div><label>Home score</label>

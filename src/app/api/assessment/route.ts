@@ -75,5 +75,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, answer });
   }
 
+  if (b.action === "delete") {
+    if (!isSuper(s)) return NextResponse.json({ error: "Super admin only." }, { status: 403 });
+    await query("DELETE FROM assessments WHERE id = ?", [b.id]);
+    return NextResponse.json({ ok: true });
+  }
+
   return NextResponse.json({ error: "Unknown action." }, { status: 400 });
 }

@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/auth";
+import { getSession, isSuper } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { migrate, query } from "@/lib/db";
 import ResultForm from "@/components/ResultForm";
@@ -25,7 +25,7 @@ export default async function Results() {
         </div>
       ) : (
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))" }}>
-          {pending.map((g) => <ResultForm key={g.id} game={g} />)}
+          {pending.map((g) => <ResultForm key={g.id} game={g} isSuper={isSuper(s)} />)}
         </div>
       )}
 

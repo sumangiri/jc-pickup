@@ -158,7 +158,14 @@ export async function migrateExtras() {
     created_by TEXT,
     created_at ${TS()}
   )`);
-  try { await exec(`ALTER TABLE games ADD COLUMN sheet_url TEXT`); } catch {}
+  for (const ddl of [
+    `ALTER TABLE games ADD COLUMN sheet_url TEXT`,
+    `ALTER TABLE games ADD COLUMN drift_delta REAL`,
+    `ALTER TABLE games ADD COLUMN approval_status TEXT`,
+    `ALTER TABLE games ADD COLUMN submitted_by TEXT`,
+    `ALTER TABLE games ADD COLUMN pending_result TEXT`,
+    `ALTER TABLE rating_history ADD COLUMN game_id TEXT`,
+  ]) { try { await exec(ddl); } catch {} }
 }
 
 export function uid() {

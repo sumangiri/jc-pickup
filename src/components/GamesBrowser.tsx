@@ -2,7 +2,16 @@
 import { useState } from "react";
 import GameEditor from "./GameEditor";
 
-export default function GamesBrowser({ games, admin }: { games: any[]; admin?: boolean }) {
+export default function GamesBrowser({ games, admin, isSuper }: { games: any[]; admin?: boolean; isSuper?: boolean }) {
+  const [busy, setBusy] = useState(false);
+  async function post(url: string, body: any) {
+    setBusy(true);
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body) });
+    const j = await r.json(); setBusy(false);
+    if (!r.ok) { alert(j.error); return; }
+    location.reload();
+  }
   const [editing, setEditing] = useState<any>(null);
   const [importing, setImporting] = useState(false);
   const [q, setQ] = useState("");
@@ -45,7 +54,11 @@ export default function GamesBrowser({ games, admin }: { games: any[]; admin?: b
                   <td className="num" style={{ fontWeight: 700 }}>
                     {g.result ? `${g.score_home}–${g.score_away}` : <span className="muted">pending</span>}
                   </td>
-                  <td>{g.result ? <span className={`pill ${g.result}`}>{g.result}</span> : "—"}</td>
+                  <td>
+                    {g.result ? <span className={`pill ${g.result}`}>{g.result}</span>
+                      : g.pending_result ? <span className="pill pending">result pending</span> : "—"}
+                    {g.approval_status === "pending" && <span className="pill pending" style={{ marginLeft: 6 }}>unapproved</span>}
+                  </td>
                   <td>{g.motm ? <span className="pill amber">★ {g.motm.split(" ")[0]}</span> : <span className="muted">—</span>}</td>
                   <td className="muted mono" style={{ fontSize: 11 }}>{open === g.id ? "−" : "+"}</td>
                 </tr>
@@ -58,7 +71,20 @@ export default function GamesBrowser({ games, admin }: { games: any[]; admin?: b
                       </div>
                       {g.swing && <div className="muted mono" style={{ fontSize: 11.5 }}>⇄ {g.swing} switched at half</div>}
                       {g.sheet_url && <img src={g.sheet_url} alt="team sheet" style={{ maxWidth: 480, width: "100%", borderRadius: 8, marginTop: 10, border: "1px solid var(--line)" }} />}
-                      {admin && <div style={{ marginTop: 10 }}><button className="btn ghost sm" onClick={(e) => { e.stopPropagation(); setEditing(g); }}>Edit game</button></div>}
+                      {(admin || isSuper) && (
+                        <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                          {admin && <button className="btn ghost sm"
+                            onClick={(e) => { e.stopPropagation(); setEditing(g); }}>Edit game</button>}
+                          {g.sheet_url && <a className="btn ghost sm" href={g.sheet_url}
+                            download={`jc-pickup-${g.date}.png`} onClick={(e) => e.stopPropagation()}>Download sheet</a>}
+                          {isSuper && g.result && <button className="btn ghost sm" disabled={busy}
+                            onClick={(e) => { e.stopPropagation();
+                              if (confirm("Unpublish this result? Player ratings will be restored to their pre-game values.")) post("/api/result", { action: "unpublish", gameId: g.id }); }}>Unpublish result</button>}
+                          {isSuper && <button className="btn ghost sm" disabled={busy}
+                            onClick={(e) => { e.stopPropagation();
+                              if (confirm("Delete this game permanently?")) post("/api/games", { action: "delete", gameId: g.id }); }}>Delete game</button>}
+                        </div>
+                      )}
                     </td>
                   </tr>
                 )}

@@ -75,8 +75,15 @@ export default function AssessmentView({ rows, canAsk }: { rows: any[]; canAsk: 
           <div className="chalk">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
               <div className="eyebrow" style={{ margin: 0 }}>{current.week_label}</div>
-              <div className="mono muted" style={{ fontSize: 11 }}>
-                {current.games_covered} games covered
+              <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                <span className="mono muted" style={{ fontSize: 11 }}>{current.games_covered} games covered</span>
+                {canAsk && <button className="btn ghost sm" onClick={async () => {
+                  if (!confirm("Delete this assessment?")) return;
+                  await fetch("/api/assessment", { method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "delete", id: current.id }) });
+                  setIdx(0); router.refresh();
+                }}>Delete</button>}
               </div>
             </div>
             <Markdown text={current.content} />

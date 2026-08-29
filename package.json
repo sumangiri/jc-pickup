@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "html-to-image": "^1.11.13",
     "jose": "^5.9.6",
     "next": "14.2.15",
+    "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^2.13.3",
-    "pg": "^8.13.1"
+    "recharts": "^2.13.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

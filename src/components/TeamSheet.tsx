@@ -1,4 +1,6 @@
 "use client";
+import { useRef, useState } from "react";
+import { toPng } from "html-to-image";
 import { pickFormation, assignLines, winProbability } from "@/lib/balance";
 
 const W = 68, H = 105;
@@ -94,9 +96,56 @@ function Pitch({ team, cap, swing, dot, edge, label, tint, skill, gkName }: any)
 }
 
 export default function TeamSheet({ result, label }: { result: any; label?: string }) {
+  const shareRef = useRef<HTMLDivElement>(null);
+  const [busy, setBusy] = useState("");
+  const [note, setNote] = useState("");
   if (!result) return null;
   const { home, away, skillHome, skillAway, captainHome, captainAway, swing } = result;
   const wp = winProbability(skillHome, skillAway, home.length, away.length);
+  const fileName = `jc-pickup-${(label || new Date().toISOString().slice(0, 10))
+    .replace(/[^\w-]+/g, "-").toLowerCase()}.png`;
+
+  async function render(): Promise<Blob | null> {
+    if (!shareRef.current) return null;
+    const dataUrl = await toPng(shareRef.current, {
+      pixelRatio: 2, backgroundColor: "#0C1220", cacheBust: true,
+    });
+    return await (await fetch(dataUrl)).blob();
+  }
+
+  async function download() {
+    setBusy("Rendering…"); setNote("");
+    try {
+      const blob = await render();
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = fileName; a.click();
+      URL.revokeObjectURL(url);
+    } catch (e: any) { setNote("Couldn't render the image. Try again."); }
+    setBusy("");
+  }
+
+  async function share() {
+    setBusy("Preparing…"); setNote("");
+    try {
+      const blob = await render();
+      if (!blob) return;
+      const file = new File([blob], fileName, { type: "image/png" });
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: "JC Pickup team sheet" });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = fileName; a.click();
+        URL.revokeObjectURL(url);
+        setNote("Sharing isn't available on this device — downloaded instead.");
+      }
+    } catch (e: any) {
+      if (e?.name !== "AbortError") setNote("Couldn't share the image.");
+    }
+    setBusy("");
+  }
 
   return (
     <div className="chalk" id="team-sheet">
@@ -117,6 +166,45 @@ export default function TeamSheet({ result, label }: { result: any; label?: stri
       <div style={{ textAlign: "center", marginTop: 12, fontSize: 11.5 }} className="muted mono">
         (C) = CAPTAIN · 1 = GK{swing ? ` · ⇄ ${swing.split(" ")[0]} SWITCHES AT HALF` : ""}
       </div>
+
+      <div style={{ display: "flex", gap: 8, marginTop: 14, flexWrap: "wrap", justifyContent: "center" }}>
+        <button className="btn sm" onClick={share} disabled={!!busy}>
+          {busy || "Share to WhatsApp"}
+        </button>
+        <button className="btn ghost sm" onClick={download} disabled={!!busy}>Download PNG</button>
+      </div>
+      {note && <div className="muted" style={{ textAlign: "center", fontSize: 12, marginTop: 8 }}>{note}</div>}
+
+      {/* Off-screen 1080px portrait build for phone screens / WhatsApp */}
+      <div style={{ position: "fixed", left: -99999, top: 0, pointerEvents: "none" }} aria-hidden>
+        <div ref={shareRef} style={{ width: 1080, background: "#0C1220", padding: 40,
+          fontFamily: "Archivo, system-ui, sans-serif", color: "#EEF3F8" }}>
+          <div style={{ textAlign: "center", marginBottom: 22 }}>
+            <div style={{ fontSize: 44, fontWeight: 900, letterSpacing: "-.01em" }}>TEAM SHEET</div>
+            {label && <div style={{ fontSize: 24, color: "#8FA0B8", marginTop: 6 }}>{label}</div>}
+            <div style={{ fontSize: 22, color: "#FFB43C", fontWeight: 800, marginTop: 10,
+              fontFamily: "JetBrains Mono, monospace" }}>
+              HOME {wp.home}% · DRAW {wp.draw}% · AWAY {wp.away}%
+            </div>
+          </div>
+          <div style={{ marginBottom: 26 }}>
+            <Pitch team={home} cap={captainHome} swing={swing} dot="#E23B48" edge="#8E1616"
+              label="HOME · PINNIES" tint="#FF6B6B" skill={skillHome} gkName="Narayan" />
+          </div>
+          <div>
+            <Pitch team={away} cap={captainAway} swing={swing} dot="#1F2A44" edge="#0D1526"
+              label="AWAY · NO PINNIES" tint="#9DB4E8" skill={skillAway} gkName="Narayan" />
+          </div>
+          <div style={{ textAlign: "center", marginTop: 22, fontSize: 20, color: "#8FA0B8",
+            fontFamily: "JetBrains Mono, monospace" }}>
+            (C) = CAPTAIN · 1 = GK{swing ? ` · ${swing.split(" ")[0]} SWITCHES AT HALF` : ""}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 14, fontSize: 18, color: "#55647E",
+            letterSpacing: ".2em" }}>JC PICKUP · JERSEY CITY HEIGHTS</div>
+        </div>
+      </div>
     </div>
   );
 }
+
+export { }

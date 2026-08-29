@@ -109,12 +109,33 @@ export default function PhotosView() {
       {open && (
         <div onClick={() => setOpen(null)} style={{ position: "fixed", inset: 0, zIndex: 90,
           background: "rgba(6,10,18,.9)", display: "grid", placeItems: "center", padding: 20 }}>
-          <div style={{ maxWidth: 900, width: "100%" }}>
+          <div style={{ maxWidth: 900, width: "100%" }} onClick={(e) => e.stopPropagation()}>
             <img src={open.url} alt="" style={{ width: "100%", borderRadius: 12 }} />
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}
-              className="mono muted">
-              <span>{open.caption || "—"}</span>
-              <span>{open.game_date || open.created_at?.slice(0, 10)} · {open.uploaded_by}</span>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, gap: 12,
+              flexWrap: "wrap", alignItems: "center" }} className="mono muted">
+              <input value={open.caption || ""} placeholder="Add a caption"
+                onChange={(e) => setOpen({ ...open, caption: e.target.value })}
+                style={{ flex: 1, minWidth: 180 }} />
+              <input type="date" value={open.game_date || ""}
+                onChange={(e) => setOpen({ ...open, game_date: e.target.value })} style={{ width: 160 }} />
+              <span style={{ fontSize: 11 }}>{open.uploaded_by}</span>
+            </div>
+            <div style={{ display: "flex", gap: 8, marginTop: 10, justifyContent: "flex-end" }}>
+              <button className="btn sm" onClick={async () => {
+                await fetch("/api/photos", { method: "PATCH",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: open.id, caption: open.caption, gameDate: open.game_date }) });
+                setOpen(null); load(q);
+              }}>Save</button>
+              <button className="btn ghost sm" onClick={async () => {
+                if (!confirm("Remove this photo?")) return;
+                const r = await fetch("/api/photos", { method: "DELETE",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ id: open.id }) });
+                if (!r.ok) { alert((await r.json()).error); return; }
+                setOpen(null); load(q);
+              }}>Delete</button>
+              <button className="btn ghost sm" onClick={() => setOpen(null)}>Close</button>
             </div>
           </div>
         </div>
